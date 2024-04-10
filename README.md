@@ -16,6 +16,6 @@ Kelompok:
 # Use
   
   ```
-  cd UTS_Algoritma-2/Tugas-UTS
+  cd UTS_Algoritma-2/UTS-ANS7
   python UTS-ANS7.py
   ```
