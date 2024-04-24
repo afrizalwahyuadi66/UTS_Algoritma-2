@@ -30,7 +30,7 @@ def main():
             UMenu.display_menu2()
             choice = int(input("Pilih program dari menu: "))
             if choice >= 1 and choice <= 12:
-                UProblem.run_program(choice)
+                UProses.run_program(choice)
             elif choice == 13:
                   level = 2
             elif choice == 14:
