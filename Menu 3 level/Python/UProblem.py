@@ -26,10 +26,6 @@ def run_program(choice):
         program_9()
     elif choice == 10:
         program_10()
-    elif choice == 11:
-        program_11()
-    elif choice == 12:
-        program_12()
 #=================================================================================
 
 
@@ -378,14 +374,4 @@ def program_10():
         print(i)
         
     print(f"\nTekan Enter Untuk Kembali :")
-    input()
-#=================================================================================
-
-#Program 11=======================================================================
-def program_11():
-    
-    UMenu.display_menu()
-
-def program_12():
-    print("Program 12")
     input()
