@@ -29,11 +29,11 @@ def main():
         elif level == 3:
             UMenu.display_menu2()
             choice = int(input("Pilih program dari menu: "))
-            if choice >= 1 and choice <= 10:
-                UProses.run_program(choice)
-            elif choice == 11:
+            if choice >= 1 and choice <= 12:
+                UProblem.run_program(choice)
+            elif choice == 13:
                   level = 2
-            elif choice == 12:
+            elif choice == 14:
                   level = 1
             else:
                 print("Pilihan tidak valid.")
