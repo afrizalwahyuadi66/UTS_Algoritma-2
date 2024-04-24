@@ -1,7 +1,129 @@
+import tkinter as tk
+from tkinter import messagebox
+import random
 import math
 import datetime
 import sys
 import os
+import UMenu
+
+class MastermindGame:
+    def __init__(self, master):
+        self.master = master
+        self.master.title("Mastermind Game")
+        self.master.geometry("400x350")
+
+        self.colors = {
+            1: "Merah", 2: "Putih", 3: "Hitam", 4: "Kuning",
+            5: "Hijau", 6: "Biru", 7: "Coklat", 8: "Ungu",
+            9: "Pink", 10: "Cyan"
+        }
+
+        self.secret_code = [random.randint(1, 10) for _ in range(4)]
+        self.attempts_left = 5
+        self.current_attempt = [tk.IntVar(), tk.IntVar(), tk.IntVar(), tk.IntVar()]
+
+        self.create_gui()
+
+    def create_gui(self):
+        self.create_guess_row()
+        self.create_input_rows()
+        self.create_feedback_area()
+
+    def create_guess_row(self):
+        guess_frame = tk.Frame(self.master)
+        guess_frame.pack(pady=10)
+
+        self.guess_labels = []
+        for i in range(4):
+            label = tk.Label(guess_frame, text="?", width=5, height=2, bg="lightgray", relief="solid")
+            self.guess_labels.append(label)
+            label.grid(row=0, column=i, padx=5)
+
+    def create_input_rows(self):
+        input_frame = tk.Frame(self.master)
+        input_frame.pack(pady=5)
+
+        for i in range(4):
+            entry = tk.Entry(input_frame, textvariable=self.current_attempt[i], width=5)
+            entry.grid(row=0, column=i, padx=5)
+
+        guess_button = tk.Button(input_frame, text="Tebak", command=self.check_guess)
+        guess_button.grid(row=0, column=4, padx=5)
+
+    def create_feedback_area(self):
+        feedback_frame = tk.Frame(self.master)
+        feedback_frame.pack(pady=10)
+
+        self.feedback_label = tk.Label(feedback_frame, text="Umpan Balik: ")
+        self.feedback_label.pack()
+
+        self.chances_label = tk.Label(feedback_frame, text=f"Kesempatan: {self.attempts_left}")
+        self.chances_label.pack()
+
+        info_label_1 = tk.Label(feedback_frame, text="1=Merah, 2=Putih, 3=Hitam, 4=Kuning, 5=Hijau,")
+        info_label_1.pack()
+
+        info_label_2 = tk.Label(feedback_frame, text="6=Biru, 7=Coklat, 8=Ungu, 9=Pink, 10=Cyan")
+        info_label_2.pack()
+
+    def check_guess(self):
+        guess = [var.get() for var in self.current_attempt]
+        correct_positions = sum([1 for i in range(4) if guess[i] == self.secret_code[i]])
+
+        if correct_positions == 4:
+            self.end_game("100% benar. Anda berhasil menebak semua warna.")
+        else:
+            self.attempts_left -= 1
+            if self.attempts_left == 0:
+                self.end_game("Anda kehabisan kesempatan. Game direset.")
+            else:
+                self.update_guess_labels(guess, correct_positions)
+                self.update_feedback(correct_positions)
+                self.update_chances()
+
+    def update_guess_labels(self, guess, correct_positions):
+        for i, label in enumerate(self.guess_labels):
+            if guess[i] == self.secret_code[i]:
+                label.config(text=self.colors[guess[i]], bg="lightgray")
+            elif guess[i] in self.secret_code:
+                label.config(text="?", bg="white")
+            else:
+                label.config(text="?", bg="lightgray")
+
+    def update_feedback(self, correct_positions):
+        percentage = (correct_positions / 4) * 100
+        self.feedback_label.config(text=f"{correct_positions} warna benar. Coba lagi!")
+
+    def update_chances(self):
+        self.chances_label.config(text=f"Kesempatan: {self.attempts_left}")
+
+    def end_game(self, message):
+        correct_code = [self.colors[color] for color in self.secret_code]
+        messagebox.showinfo("Game Over", f"{message}\nJawaban yang benar: {correct_code}")
+        self.reset_game()
+
+    def reset_game(self):
+        self.secret_code = [random.randint(1, 10) for _ in range(4)]
+        self.attempts_left = 5
+
+        for label in self.guess_labels:
+            label.config(text="?", bg="lightgray")
+
+        self.feedback_label.config(text="Umpan Balik: ")
+        self.chances_label.config(text=f"Kesempatan: {self.attempts_left}")
+
+        for var in self.current_attempt:
+            var.set(0)
+
+
+# Fungsi yang menjalankan game Mastermind dalam program_11
+def program_12():
+    # Membuat jendela utama dan memulai permainan
+    root = tk.Tk()
+    game = MastermindGame(root)
+    root.mainloop()
+
 
 # Menjalankan Program=============================================================
 def run_program(choice):
@@ -25,6 +147,10 @@ def run_program(choice):
         program_9()
     elif choice == 10:
         program_10()
+    elif choice == 11:
+        program_11()
+    elif choice == 12:
+        program_12()
 #=================================================================================
 
 
@@ -373,4 +499,8 @@ def program_10():
         print(i)
         
     print(f"\nTekan Enter Untuk Kembali :")
+    input()
+
+def program_11():
+    print("Program 11")
     input()
