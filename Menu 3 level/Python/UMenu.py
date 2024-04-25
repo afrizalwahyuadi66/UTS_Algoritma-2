@@ -20,7 +20,7 @@ def print_color(text, color):
 
 
 # Define the logo-----------------------------------------------------------------------
-logo = (
+logo = ( # logo = ( : perintah untuk melakukan perkenalan dalam sebuah perintah dan bisa langsung diketikan print(logo) dimana pun yang kita mau
     "\033[34m  ██╗░░░██╗████████╗░██████╗░░░░░░░█████╗░███╗░░██╗░██████╗███████╗ \n" 
     "\033[34m  ██║░░░██║╚══██╔══╝██╔════╝░░░░░░██╔══██╗████╗░██║██╔════╝╚════██║ \n"
     "\033[34m  ██║░░░██║░░░██║░░░╚█████╗░█████╗███████║██╔██╗██║╚█████╗░░░░░██╔╝ \n"
@@ -30,7 +30,7 @@ logo = (
     "\033[34m  ░╚═════╝░░░░╚═╝░░░╚═════╝░░░░░░░╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░░░╚═╝░░░ \n\n"
     "\033[92m		    	Tugas UTS Algoritma 2\n\n"
                                                                                                                                                                      
-    "\033[91m	 1. Afrizal Wahyu Adi Putra\t 11230070\n"
+    "\033[91m	 1. Afrizal Wahyu Adi Putra\t 11230070\n"     # \t : sama saja artinya dengan (tab)
     "\033[91m	 2. Nadia Zahira Sofa\t\t 11230056 \n"
     "\033[91m	 3. Syifa Susila Pratami\t 11230068 \n"
     "\033[0m"
@@ -39,65 +39,73 @@ logo = (
 
 
 # Clear screen--------------------------------------------------------------------------
-os.system('cls' if os.name == 'nt' else 'clear')
+os.system('cls' if os.name == 'nt' else 'clear') # codingan ini dibuat untuk membersihkan/clearscreen pada terminal atau console komputer
 #---------------------------------------------------------------------------------------
 
 
 # Print the logo------------------------------------------------------------------------
-print(logo)
+print(logo) # print(logo) : untuk melakukan perintah menampilkan logo yang sudah ter definisi di logo = (
 #---------------------------------------------------------------------------------------
 def display_menu():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(logo)
     
-    print("+===== Menu Utama =====+")
-    print("| 1. Menu Program 1    |")
-    print("| 2. Langsung ke UTS   |")
-    print("+======================+")
+    print(
+    "\033	          +===== Menu Utama =====+ \n"
+    "\033	          | 1. Menu Program 1    | \n"
+    "\033	          | 2. Langsung ke UTS   | \n"
+    "\033	          +======================+ \n"
+    )
 
 
 def display_menu1():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(logo)
 
-    print("+===== Menu Program  =====+")
-    print("| 1. Program UTS          |")
-    print("| 2. Menu Kosong :)       |")
-    print("+=========================+")
-    print("| 3. Kembali              |")
-    print("+=========================+")
+    print(
+    "\033	          +===== Menu Program  =====+ \n"
+    "\033	          | 1. Program UTS          | \n"
+    "\033	          | 2. Menu Kosong :)       | \n"
+    "\033	          +=========================+ \n"
+    "\033	          | 3. Kembali              | \n"
+    "\033	          +=========================+ \n"
+    )
 
 def display_menu12():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(logo)
 
-    print("+======= Menu kedua =======+")
-    print("|                          |")
-    print("|  UDAH DIBILANGIN KOSONG  |")
-    print("|                          |")
-    print("+==========================+")
-    print("|  Ketik 1 untuk ke awal   |")
-    print("+==========================+")
+    print(
+    "\033	          +======= Menu kedua =======+ \n"
+    "\033	          |                          | \n"
+    "\033	          |  UDAH DIBILANGIN KOSONG  | \n"
+    "\033	          |                          | \n"
+    "\033	          +==========================+ \n"
+    "\033	          |  Ketik 1 untuk ke awal   | \n"
+    "\033	          +==========================+ \n"
+    )
     
     
 def display_menu2():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(logo)
     
-    print("+==== Program UTS ====+")
-    print("| 1. Program 1        |")
-    print("| 2. Program 2        |")
-    print("| 3. Program 3        |")
-    print("| 4. Program 4        |")
-    print("| 5. Program 5        |")
-    print("| 6  Program 6        |")
-    print("| 7. Program 7        |")
-    print("| 8. Program 8        |")
-    print("| 9. Program 9        |")
-    print("| 10. Program 10      |")
-    print("| 11. Program 11      |")
-    print("| 12. Program game    |")
-    print("+=====================+")
-    print("| 13. Menu sebelumnya |")
-    print("| 14. Kembali ke awal |")
-    print("+=====================+")
+    print(
+    "\033	       +==== Program UTS ====+ \n"
+    "\033	       | 1. Program 1        | \n"
+    "\033	       | 2. Program 2        | \n"
+    "\033	       | 3. Program 3        | \n"
+    "\033	       | 4. Program 4        | \n"
+    "\033	       | 5. Program 5        | \n"
+    "\033	       | 6  Program 6        | \n"
+    "\033	       | 7. Program 7        | \n"
+    "\033	       | 8. Program 8        | \n"
+    "\033	       | 9. Program 9        | \n"
+    "\033	       | 10. Program 10      | \n"
+    "\033	       | 11. Program 11      | \n"
+    "\033	       | 12. Program game    | \n"
+    "\033	       +=====================+ \n"
+    "\033	       | 13. Menu sebelumnya | \n"
+    "\033	       | 14. Kembali ke awal | \n"
+    "\033	       +=====================+ \n"
+    )
