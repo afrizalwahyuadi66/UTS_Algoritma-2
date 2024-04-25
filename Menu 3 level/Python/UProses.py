@@ -1,12 +1,11 @@
 #Perpustakaan ============================================================================
-import tkinter as tk
-from tkinter import messagebox
-import random
-import math
-import datetime
+import tkinter as tk # tk dan tkinter adalah perpustakaan untuk membuat sebuah GUI dalam sebuah program
+from tkinter import messagebox # massagebox : adalah sebuah perpustakaan untuk menampilkan feedback tambahan
+import random # import random : sebuah perpustakaan untuk membuat suatu sistem acak dalam sebuah pemrograman
+import math # perhitungan matematis dalam sebuah perppustakaan
+import datetime # datetime : adalah sebuah perpustakaan untuk menampilkan sebuah tanggal dan waktu yang ada di system komputer kita
 import sys
 import os
-import UMenu
 #========================================================================================
 
 
