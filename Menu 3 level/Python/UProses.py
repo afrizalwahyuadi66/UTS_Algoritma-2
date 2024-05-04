@@ -6,6 +6,10 @@ import math # perhitungan matematis dalam sebuah perppustakaan
 import datetime # datetime : adalah sebuah perpustakaan untuk menampilkan sebuah tanggal dan waktu yang ada di system komputer kita
 import sys
 import os
+# Khusus untuk Program 
+import string
+import pandas as pd
+from prettytable import PrettyTable
 #========================================================================================
 
 
@@ -534,7 +538,134 @@ def program_10():
 
 
 #Program 11 =======================================================================
+class Mahasiswa:
+    def __init__(self, nim, nama, nilai):
+        self.nim = nim
+        self.nama = nama
+        self.nilai = nilai
+
+class ProgramMahasiswa:
+    def __init__(self):
+        self.mahasiswa_list = []
+
+    def tambah_mahasiswa(self, nim, nama, nilai):
+        mahasiswa_baru = Mahasiswa(nim, nama, nilai)
+        self.mahasiswa_list.append(mahasiswa_baru)
+
+    def tampilkan_data(self):
+        if not self.mahasiswa_list:
+            print("Belum ada data mahasiswa yang dimasukkan.")
+            return
+
+        table = PrettyTable()
+        table.field_names = ["NIM", "Nama", "Nilai"]
+
+        for mahasiswa in self.mahasiswa_list:
+            table.add_row([mahasiswa.nim, mahasiswa.nama, mahasiswa.nilai])
+
+        print(table)
+        
+    def generate_nim(self):
+        return ''.join(random.choices(string.digits, k=8))
+
+    def generate_nama(self):
+        return ''.join(random.choices(string.ascii_letters, k=10))
+
+    def generate_nilai(self):
+        return ''.join(random.choices(string.digits, k=2))
+        
+    def simpan_data(self, format_file):
+        if not self.mahasiswa_list:
+            print("Belum ada data mahasiswa yang dimasukkan.")
+            return
+
+        data = {
+            "NIM": [m.nim for m in self.mahasiswa_list],
+            "Nama": [m.nama for m in self.mahasiswa_list],
+            "Nilai": [m.nilai for m in self.mahasiswa_list],
+        }
+
+        df = pd.DataFrame(data)
+
+        if format_file == "xlsx":
+            file_path = "data_mahasiswa.xlsx"
+            df.to_excel(file_path, index=False)
+            print(f"Data mahasiswa berhasil disimpan ke {file_path}")
+
+        elif format_file == "txt":
+            file_path = "data_mahasiswa.txt"
+            df.to_csv(file_path, index=False, sep='\t')
+            print(f"Data mahasiswa berhasil disimpan ke {file_path}")
+
 def program_11():
-    print("Program 11")
-    input()
+    program = ProgramMahasiswa()
+
+    while True:
+        print("\n=== PROGRAM INPUT DATA MAHASISWA ===")
+        print("1. Tambah Data Mahasiswa")
+        print("2. Tambah Mahasiswa Otomatis")
+        print("3. Tampilkan Data Mahasiswa")
+        print("4. Simpan File Berbentuk (.txt/.xlsx)")
+        print("5. Keluar")
+
+        pilihan = input("Masukkan pilihan: ")
+
+        if pilihan == "1":
+            # Memilih apakah ingin menambah satu data atau beberapa data
+            multiple_entries = input("Ingin menambah lebih dari satu mahasiswa? (y/n): ")
+
+            if multiple_entries.lower() == 'y':
+                while True:
+                    nim = input("Masukkan NIM: ")
+                    nama = input("Masukkan Nama: ")
+                    kelas = input("Masukkan Nilai: ")
+                    program.tambah_mahasiswa(nim, nama, nilai)
+                    print("Data mahasiswa berhasil ditambahkan!")
+
+                    lanjut = input("Tambah mahasiswa lagi? (y/n): ")
+                    if lanjut.lower() == 'n':
+                        break
+            else:
+                nim = input("Masukkan NIM: ")
+                nama = input("Masukkan Nama: ")
+                nilai = input("Masukkan Nilai: ")
+                program.tambah_mahasiswa(nim, nama, nilai)
+                print("Data mahasiswa berhasil ditambahkan!")
+                
+        elif pilihan == "2":
+            # Memilih apakah ingin menambah satu data atau beberapa data
+            multiple_entries = input("Ingin menambah lebih dari satu mahasiswa? (y/n): ")
+
+            if multiple_entries.lower() == 'y':
+                num_data = int(input("Masukan jumlah data yang ingin ditambahkan: "))
+                for _ in range(num_data):
+                    nim = program.generate_nim()
+                    nama = program.generate_nama()
+                    nilai = program.generate_nilai()
+                    program.tambah_mahasiswa(nim, nama, nilai)
+                    print("Data mahasiswa berhasil ditambahkan!")
+            else:
+                nim = program.generate_nim()
+                nama = program.generate_nama()
+                nilai = program.generate_nilai()
+                program.tambah_mahasiswa(nim, nama, nilai)
+                print("Data mahasiswa berhasil ditambahkan!")        
+
+        elif pilihan == "3":
+            program.tampilkan_data()
+
+        elif pilihan == "4":
+            # Pilihan untuk menyimpan data ke dalam format Excel atau teks
+            format_file = input("Simpan sebagai apa? (xlsx/txt): ")
+            if format_file.lower() in ["xlsx", "txt"]:
+                program.simpan_data(format_file.lower())
+            else:
+                print("Format tidak valid. Pilih 'xlsx' atau 'txt'.")
+                
+        elif pilihan == "5":
+            print("Terima kasih telah menggunakan program.")
+            break
+
+        else:
+            print("Pilihan tidak valid. Silakan masukkan pilihan yang benar.")
 #==================================================================================
