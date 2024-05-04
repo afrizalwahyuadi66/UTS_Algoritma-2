@@ -6,10 +6,12 @@ import math # perhitungan matematis dalam sebuah perppustakaan
 import datetime # datetime : adalah sebuah perpustakaan untuk menampilkan sebuah tanggal dan waktu yang ada di system komputer kita
 import sys
 import os
-# Khusus untuk Program 
+
+# Khusus untuk Program 11 -----------
 import string
 import pandas as pd
 from prettytable import PrettyTable
+#------------------------------------
 #========================================================================================
 
 
